@@ -86,6 +86,12 @@ inputs:
     required: false
     default: ''
 
+  docker-config:
+    description: |
+      Docker config.json path.
+    required: false
+    default: './'
+
 outputs:
   digest:
     description: |
@@ -99,6 +105,7 @@ runs:
     GITHUB_ACTOR: ${{ inputs.repository_owner }}
     GITHUB_TOKEN: ${{ inputs.token }}
     REPOSITORY: ${{ inputs.repository }}
+    DOCKER_CONFIG: ${{ inputs.docker-config }}
   entrypoint: /bin/sh
   args:
     - '-c'
