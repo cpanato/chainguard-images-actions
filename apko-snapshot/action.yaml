@@ -152,12 +152,6 @@ runs:
         package-version-tag: ${{ inputs.package-version-tag }}
         tag-suffix: ${{ inputs.tag-suffix }}
 
-    - uses: docker/login-action@bb984efc561711aaa26e433c32c3521176eae55b # v1.13.0
-      with:
-        registry: ${{ inputs.registry }}
-        username: ${{ inputs.username }}
-        password: ${{ inputs.token }}
-
     - shell: bash
       env:
         COSIGN_EXPERIMENTAL: "true"
