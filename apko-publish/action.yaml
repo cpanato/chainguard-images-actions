@@ -29,6 +29,8 @@ inputs:
     default: ${{ github.repository_owner }}
 
   repository:
+    description: |
+      The repository name.
     default: ${{ github.repository }}
 
   token:
@@ -169,13 +171,13 @@ runs:
 
       sbomPath="--sbom-path=${{ inputs.sbom-path }}"
 
-      export DIGEST_FILE="/home/runner/work/actions/actions/digest"
+      export DIGEST_FILE="/tmp/digest"
       /usr/bin/apko publish \
         --vcs=${{ inputs.vcs-url }} \
         ${{ inputs.debug && '--log-level debug' }} \
-        --image-refs="${{ inputs.image_refs }}" ${{ inputs.config }} ${{ inputs.tag }} $keys $repos $packages $archs $build_options $sbomPath | tee ${DIGEST_FILE}
+        --image-refs="${{ inputs.image_refs }}" ${{ inputs.config }} ${{ inputs.tag }} $keys $repos $packages $archs $build_options $sbomPath
       echo EXIT CODE: $?
       EOF
       )"
 
-      echo "digest=$(cat /home/runner/work/actions/actions/digest)" >> $GITHUB_OUTPUT
+      # echo "digest=$(cat /home/runner/work/actions/actions/digest)" >> $GITHUB_OUTPUT
