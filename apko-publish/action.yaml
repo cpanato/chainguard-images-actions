@@ -170,7 +170,6 @@ runs:
       sbomPath="--sbom-path=${{ inputs.sbom-path }}"
 
       export DIGEST_FILE="/home/runner/work/actions/actions/digest"
-      touch ${DIGEST_FILE}
       /usr/bin/apko publish \
         --vcs=${{ inputs.vcs-url }} \
         ${{ inputs.debug && '--log-level debug' }} \
